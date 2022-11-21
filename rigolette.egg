@@ -1,0 +1,13 @@
+;; -*- scheme -*-
+((author "Kristian Lein-Mathisen")
+ (components
+
+  (extension rigolette
+             (source-dependencies "rigolette.scm")
+             (source "rigolette-module.scm"))
+
+  (program rigolette-cli
+           (install-name rigolette)
+           (component-dependencies rigolette)
+           (source "rigolette-cli.scm")
+           (linkage static))))

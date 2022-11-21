@@ -1,5 +1,0 @@
-;; -*- scheme -*-
-((author "Kristian Lein-Mathisen")
- (components
-  (program ds1054z-csv)
-  (program ds1054z-screenshot)))
