@@ -53,6 +53,10 @@ something to get you started.
     git clone rigolette && cd rigolette
     chicken-install -s
 
+Or if you're on GNU Guix:
+
+    guix package -f guix-package.scm
+
 # Supported devices
 
 I have only tested this on my DS1054Z, but the same manual covers all
@@ -73,4 +77,6 @@ models above.
 
 # TODO
 
+- Lots of testing
+- Lots of code cleanup
 - Improve frame-boundary robustness (a rogue command can break subsequent ones)
