@@ -13,6 +13,10 @@ though.
 This project tries to enable some of these features through a simple
 to use command line tool.
 
+    rigolette screenshot | feh - # for example:
+![example sample screenshot](i2c-good-ack.png)
+
+
 ## Implementation
 
 The command set is documented
