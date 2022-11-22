@@ -54,9 +54,9 @@
       (info (with-output-to-string (cut pretty-print config)))
       (eval config))
     (die
-     (print "error: could not find " (./rigolette.scm) "\n"
-            "here's a suggestion:\n"
-            "" example-config-command "\n")
+     (conc "error: could not find " (./rigolette.scm) "\n"
+           "here's a suggestion:\n"
+           "" example-config-command "\n")
      10))
 
 
@@ -67,7 +67,6 @@
           (if (pair? args)
               (current-rigol-port% (car args))
               (or (current-rigol-port%)
-                  (begin (info "running: " connect) #f)
                   (current-rigol-port% ;; <-- returns latest value
                    (call-with-values connect make-bidirectional-port)))))))
 
@@ -142,7 +141,9 @@
       (if (pair? exe)
           (for-each (lambda (e) (e)) (reverse exe))
           (die
-           (print "usage: [-v] [-m RAW/NORM/MAX] [-c CHAN1,CHAN2,…] <command>
+           (conc "rigolette lets you control some Rigol oscilloscopes.
+
+usage: [-v] [-m RAW/NORM/MAX] [-c CHAN1,CHAN2,…] <command>
 where <command> is one of:
     run  - start the scope
     stop - stop the scope
