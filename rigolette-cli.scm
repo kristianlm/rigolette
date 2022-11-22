@@ -59,9 +59,17 @@
             "" example-config-command "\n")
      10))
 
-(info "running: " connect)
 
-(current-rigol-port (call-with-values connect make-bidirectional-port))
+;; don't try to connect until rigol-port is requested
+(set! current-rigol-port
+      (let ((current-rigol-port% current-rigol-port))
+        (lambda args
+          (if (pair? args)
+              (current-rigol-port% (car args))
+              (or (current-rigol-port%)
+                  (begin (info "running: " connect) #f)
+                  (current-rigol-port% ;; <-- returns latest value
+                   (call-with-values connect make-bidirectional-port)))))))
 
 ;; (cmd ":STOP") ;; must be stopped for that to work --⹁
 ;; (cmd ":WAV:MODE SCREEN")
